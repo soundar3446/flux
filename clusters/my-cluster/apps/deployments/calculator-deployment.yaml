@@ -14,21 +14,21 @@ spec:
         app: calculator
     spec:
       containers:
-      - name: calculator
-        image: soundar4336/calculator-app:latest
-        ports:
-        - containerPort: 8501
-        resources:
-          requests:
-            memory: "256Mi"
-            cpu: "250m"
-          limits:
-            memory: "512Mi"
-            cpu: "500m"
-        volumeMounts:
-        - name: calculator-storage
-          mountPath: /data  # Path inside the container where the volume will be mounted
+        - name: calculator
+          image: soundar4336/calculator-app:latest
+          ports:
+            - containerPort: 8501
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          volumeMounts:
+            - name: calculator-storage
+              mountPath: /data  # This is where the volume will be mounted inside the container
       volumes:
-      - name: calculator-storage
-        persistentVolumeClaim:
-          claimName: pvc  # Reference to the PVC that was created
+        - name: calculator-storage
+          persistentVolumeClaim:
+            claimName: pvc

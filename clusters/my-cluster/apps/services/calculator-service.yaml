@@ -7,7 +7,7 @@ spec:
   selector:
     app: calculator
   ports:
-  - protocol: TCP
-    port: 8501
-    targetPort: 8501
+    - protocol: TCP
+      port: 8501
+      targetPort: 8501
   type: ClusterIP
