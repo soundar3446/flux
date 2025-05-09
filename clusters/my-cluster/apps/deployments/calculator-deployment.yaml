@@ -25,3 +25,10 @@ spec:
           limits:
             memory: "512Mi"
             cpu: "500m"
+        volumeMounts:
+        - name: calculator-storage
+          mountPath: /data  # Path inside the container where the volume will be mounted
+      volumes:
+      - name: calculator-storage
+        persistentVolumeClaim:
+          claimName: pvc  # Reference to the PVC that was created
