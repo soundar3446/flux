@@ -4,3 +4,6 @@ resources:
   - namespaces/namespace.yaml
   - deployments/calculator-deployment.yaml
   - services/calculator-service.yaml
+  - deployments/db-deployment.yaml
+  - services/db-service.yaml
+  - secrets/db-secret.yaml
