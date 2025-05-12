@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nfs-provisioner
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nfs-provisioner
+  template:
+    metadata:
+      labels:
+        app: nfs-provisioner
+    spec:
+      containers:
+      - name: nfs-provisioner
+        image: quay.io/external_storage/nfs-provisioner:latest
+        volumeMounts:
+        - mountPath: /persistent-volumes
+          name: nfs-volume   # This is where we mount the volume
+      volumes:
+      - name: nfs-volume      # Define the volume here
+        nfs:
+          server: 192.168.0.195    # Replace with your NFS server IP
+          path: /mnt/nfs_share       # Replace with your NFS export path
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nfs-provisioner-service
+  namespace: default
+spec:
+  ports:
+  - port: 2049
+  selector:
+    app: nfs-provisioner
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-pvc
+  namespace: default
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: nfs
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs
+provisioner: kubernetes.io/nfs

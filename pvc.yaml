@@ -5,8 +5,8 @@ metadata:
   namespace: my-app  # Specify your desired namespace
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
-      storage: 20Gi  # The size of the storage you want to request
-  storageClassName: longhorn-nfs  # Use Longhorn as the storage class
+      storage: 10Gi  # The size of the storage you want to request
+  storageClassName: nfs  # Use Longhorn as the storage class
