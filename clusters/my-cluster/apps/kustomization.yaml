@@ -6,4 +6,4 @@ resources:
   - services/calculator-service.yaml
   - deployments/db-deployment.yaml
   - services/db-service.yaml
-  - secrets/db-secret.yaml
+  - secret/db-secret.yaml
