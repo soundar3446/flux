@@ -9,4 +9,4 @@ spec:
   resources:
     requests:
       storage: 20Gi  # The size of the storage you want to request
-  storageClassName: longhorn  # Use Longhorn as the storage class
+  storageClassName: longhorn-nfs  # Use Longhorn as the storage class
